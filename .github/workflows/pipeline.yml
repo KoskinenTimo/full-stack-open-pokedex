@@ -32,3 +32,5 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "koskinentht-pokedex" 
           heroku_email: "koskinentht@gmail.com"
+          healthcheck: "https://koskinentht-pokedex.herokuapp.com/health"
+          checkstring: "ok"
