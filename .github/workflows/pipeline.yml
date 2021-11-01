@@ -34,3 +34,4 @@ jobs:
           heroku_email: "koskinentht@gmail.com"
           healthcheck: "https://koskinentht-pokedex.herokuapp.com/health"
           checkstring: "ok"
+          rollbackonhealthcheckfailed: true
