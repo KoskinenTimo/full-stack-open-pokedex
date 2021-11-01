@@ -5,6 +5,7 @@ import LoadingSpinner from './LoadingSpinner'
 import ErrorMessage from './ErrorMessage'
 import PokemonPage from './PokemonPage'
 import PokemonList from './PokemonList'
+import { logDOM } from '@testing-library/dom'
 
 const mapResults = (({ results }) => results.map(({ url, name }) => ({
   url,
@@ -30,7 +31,9 @@ const App = () => {
         <Route path="/pokemon/:name" render={(routeParams) => {
           const pokemonId = pokemonList.find(({ name }) => name === routeParams.match.params.name).id
           const previous = pokemonList.find(({ id }) => id === pokemonId - 1)
+          console.log('prev',previous)
           const next = pokemonList.find(({ id }) => id === pokemonId + 1)
+          console.log('next',next)
           return <PokemonPage pokemonList={pokemonList} previous={previous} next={next} />
         }} />
       </Switch>
