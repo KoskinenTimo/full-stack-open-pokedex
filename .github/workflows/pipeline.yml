@@ -30,8 +30,8 @@ jobs:
           rollbackonhealthcheckfailed: true
       - name: testing steps json
         env:
-          STEPS_CONTEXT: ${{ toJSON(steps) }}
-        run: echo $STEPS_CONTEXT
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
   tag_version:
     runs-on: ubuntu-18.04
     steps:
