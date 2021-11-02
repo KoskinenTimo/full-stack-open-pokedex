@@ -30,12 +30,11 @@ jobs:
           rollbackonhealthcheckfailed: true
       - uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
-          if_mention: success
+          status: 'success'
           fields: author,action,eventName,workflow,job,took,eventName,message
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: ${{ steps.deploy.conclusion == 'success' }}
+        if: always()
   tag_version:
     runs-on: ubuntu-18.04
     steps:
@@ -62,11 +61,11 @@ jobs:
         run: npm run build
       - uses: 8398a7/action-slack@v3
         with:
-          status: 'failure'
+          status: ${{ job.status }}
           fields: author,action,eventName,workflow,job,took,eventName
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
+        if: ${{ job.status == 'failure' }}
   a_test_job:
     runs-on: ubuntu-18.04
     steps:
