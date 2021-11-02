@@ -18,7 +18,7 @@ jobs:
           node-version: '12.x'
       - name: npm install
         run: npm install
-      - name: deploy
+      - id: deploy
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip')}}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
@@ -30,7 +30,7 @@ jobs:
           rollbackonhealthcheckfailed: true
       - name: testing steps json
         env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
+          STEPS_CONTEXT: ${{ toJson(steps.deploy.conclusion) }}
         run: echo "$STEPS_CONTEXT"
   tag_version:
     runs-on: ubuntu-18.04
