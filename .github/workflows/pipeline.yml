@@ -28,10 +28,10 @@ jobs:
           healthcheck: "https://koskinentht-pokedex.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
-        - uses: 8398a7/action-slack@v3
-          with:
-            status: ${{ job.status }}
-            fields: author,action,eventName,workflow,job,took
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: author,action,eventName,workflow,job,took
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       if: always()
