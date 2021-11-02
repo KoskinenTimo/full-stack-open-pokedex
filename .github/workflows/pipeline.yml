@@ -59,8 +59,9 @@ jobs:
         run: npm run eslint
       - id: build
         run: npm run build
-      if: ${{ job.status == 'failure' }}
-      - uses: 8398a7/action-slack@v3
+      - name: send notification
+        if: ${{ job.status == 'failure' }}
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           fields: author,action,eventName,workflow,job,took,eventName
