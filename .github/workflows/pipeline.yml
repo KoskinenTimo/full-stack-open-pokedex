@@ -60,7 +60,10 @@ jobs:
         run: npm run eslint
       - id: build
         run: npm run build
-      - run: echo ${{ steps.build.conclusion }}
+      - name: test conclusion
+        env:
+          CONCLUSION: ${{ steps.build.conclusion }}
+        run: echo ${{ steps.build.conclusion }}
   a_test_job:
     runs-on: ubuntu-18.04
     steps:
