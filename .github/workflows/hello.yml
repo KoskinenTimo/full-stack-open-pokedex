@@ -4,12 +4,15 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
 
 jobs:
   hello_world_job:
     runs-on: ubuntu-18.04
     steps:
-      - name: Say hello
+      - name: hello_world_job
         run: |
           echo "Hello World!"
       - name: Now it is
