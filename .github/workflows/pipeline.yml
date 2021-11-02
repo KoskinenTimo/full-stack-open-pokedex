@@ -60,10 +60,18 @@ jobs:
         run: npm run eslint
       - id: build
         run: npm run build
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          if_mention: success
+          fields: author,action,eventName,workflow,job,took,eventName,message
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: ${{ steps.build.outcome == 'failure' }}
       - name: test conclusion
         env:
           CONCLUSION: ${{ steps.build.conclusion }}
-        run: echo ${{ steps.build.conclusion }}
+        run: echo "$CONCLUSION"
   a_test_job:
     runs-on: ubuntu-18.04
     steps:
