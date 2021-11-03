@@ -1,8 +1,9 @@
 name: Health check
 
-pull_request:
-  branches: [master]
-  types: [opened, synchronize]
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
 
 jobs:
   service_health_check:
