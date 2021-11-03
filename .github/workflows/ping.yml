@@ -15,7 +15,7 @@ jobs:
       - id: healthcheck
         uses: jtalk/url-health-check-action@v2
         with:
-          url: https://koskinenthtt-pokedex.herokuapp.com/
+          url: https://koskinentht-pokedex.herokuapp.com/
           max-attempts: 1
       - uses: 8398a7/action-slack@v3
         with:
